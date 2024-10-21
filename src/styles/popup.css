@@ -1,25 +1,189 @@
+/* General Styles */
+* {
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Stylish font */
+}
+.h1{
+  z-index: 1; 
+
+}
+
+/* Popup Container */
+.popup-container {
+  margin-left: 50px;
+  width: 580px; /* Fixed width for landscape mode */
+  height: auto; /* Height will adjust based on content */
+  background-color: #FFFFFF; /* Subtle white background */
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  position: relative; /* Allow positioning of bubbles */
+  overflow: hidden;
+  position: relative; /* Needed for positioning the content above bubbles */
+  z-index: 1; /* Ensure bubbles do not overflow the popup */
+}
+
+/* Header Text */
+.popup-container h1 {
+  font-size: 1.5rem; /* Slightly larger font for the header */
+  color: #333333; /* Dark grey for the header text */
+  text-align: center; /* Center align header text */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+/* Content Layout - Horizontal Alignment */
 .popup-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+}
+
+/* Image Styling */
+.content-image {
+  width: 200px; /* Fixed size for the image */
+  height: auto;
+  margin-right: 15px; /* Space between image and text */
+}
+
+/* Text Content */
+.text-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Fill the remaining space */
+}
+
+/* To-Do Item Styling */
+.todo-item {
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  margin-bottom: 10px; /* Space below each todo item */
+}
+
+/* To-Do Icon Styling - Diamond Shape */
+.todo-icon {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent; /* Half the size of the diamond */
+  border-right: 12px solid transparent; /* Half the size of the diamond */
+  border-bottom: 20px solid rgb(229, 177, 74); /* Gold outline */
+  position: relative;
+  margin-right: 10px; /* Space between icon and input */
+}
+
+.todo-icon::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent; /* Half the size of the diamond */
+  border-right: 12px solid transparent; /* Half the size of the diamond */
+  border-top: 20px solid white; /* White inside */
+  position: absolute;
+  top: 100%; /* Position it below the top triangle */
+  left: -12px; /* Center it */
+}
+
+/* Input Field Styling */
+.focus-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #E1E1E1; /* Light grey border */
+  border-radius: 15px;
+  font-size: 1rem; /* Larger text for easier typing */
+  transition: border-color 0.3s;
+}
+
+.focus-input:focus {
+  border-color: #FFD0C7; /* Accent color on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Button Styling */
+#set-focus-btn {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #D60C5B; /* Accent pink */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Space above the button */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#set-focus-btn:hover {
+  background-color: #C93535; /* Darker pink on hover */
+}
+
+/* Translucent Bubbles */
+/* Translucent Bubbles */
+/* Translucent Bubbles */
+.bubble {
+  position: absolute;
+  border-radius: 50%; /* Make it circular */
+  z-index: -1; /* Ensure it appears below content */
+}
+
+/* Bottom Right Bubbles */
+.blue-bubble {
+  bottom: -30px; /* Position the bubble slightly outside the popup */
+  right: -40px; /* Position the bubble to the right */
+  width: 280px; /* Width of the bubble */
+  height: 200px; /* Height of the bubble */
+  background-color: rgba(192, 230, 223, 0.5); /* Translucent blue */
+}
+
+.yellow-bubble {
+  bottom: -30px; /* Position the bubble slightly outside the popup */
+  right: -10px; /* Position the bubble to the right */
+  width: 160px; /* Width of the bubble */
+  height: 160px; /* Height of the bubble */
+  background-color: rgba(229, 177, 74,0.6); /* Translucent yellow */
+}
+
+/* Top Right Bubbles */
+.top-right-bubble {
+  position: absolute;
+  z-index: -1; /* Ensure it appears below content */
+}
+
+.top-right-bubble.blue-bubble {
+  z-index: -1;
+  top: -40px; /* Position the bubble slightly outside the popup */
+  right: -40px; /* Position the bubble to the right */
+  width: 100px; /* Width of the larger bubble */
+  height: 100px; /* Height of the larger bubble */
+  background-color: rgba(173, 216, 230, 0.6); /* Translucent blue */
+}
+
+.top-right-bubble.yellow-bubble {
+  top: -20px; /* Adjust position to not overlap the blue bubble */
+  right: -10px; /* Position the bubble to the right */
+  width: 40px; /* Width of the smaller bubble */
+  height: 40px; /* Height of the smaller bubble */
+  background-color: rgba(240, 126, 97, 0.6); /* Translucent yellow */
+  z-index: -1; /* Ensure this bubble is behind the text */
+}
+/* Goals Text Style */
+/* Goals Text Style */
+/* Goals Text Style */
+.goals-text {
+  color: #e98874; /* Change this to your desired color */
+  font-family: 'Brush Script MT', cursive; /* Cursive font for goals */
   
-  input {
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 200px;
-  }
-  
-  button {
-    padding: 5px 10px;
-    background-color: #4285f4;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #357ae8;
-  }
-  
+  font-size: 2rem; /* Increase the font size */
+}
+
+
+/* Focus Points Text Style */
+.focus-points-text {
+  color: #E5B14A; /* Change this to your desired color */
+  font-family: 'Courier New', monospace; /* Monospaced font for focus points */
+  font-weight: bold; /* Optional: make it bold */
+}
+
+
+/* Ensure Content Stays Above Bubbles */
+
