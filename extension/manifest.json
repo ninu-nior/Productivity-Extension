@@ -1,0 +1,45 @@
+{
+    "manifest_version": 3,
+    "name": "Your Extension Name",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "tabs",
+        "scripting",
+        "notifications"
+    ],
+    "host_permissions": [
+        "https://*/*",
+        "http://*/*"
+    ],
+    "background": {
+        "service_worker": "src/scripts/background.js"
+    },
+    "action": {
+        "default_popup": "src/views/popup.html",
+        "default_icon": "src/assets/icon.png"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "src/views/sidebar.html",
+                "src/scripts/sidebar.css",
+                "src/scripts/sidebar.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/scripts/content.js"
+            ]
+        }
+    ]
+}

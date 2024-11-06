@@ -1,2 +1,5 @@
 .venv
+env/
 env
+llama_model/.env
+llama_model/models/
