@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Your Extension Name",
+    "name": "Productivity",
     "version": "1.0",
     "permissions": [
         "activeTab",
@@ -20,6 +20,7 @@
         "default_popup": "src/views/popup.html",
         "default_icon": "src/assets/icon.png"
     },
+    
     "web_accessible_resources": [
         {
             "resources": [

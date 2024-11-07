@@ -5,7 +5,7 @@ def get_response(focus_topic_1,focus_point_2,focus_point_3,content):
     
     llm = ChatGroq(
         model="llama-3.1-70b-versatile",
-        groq_api_key=os.getenv("GROQ_API_KEY"),
+        groq_api_key="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",
         temperature=0,
     )
     prompt=f'''

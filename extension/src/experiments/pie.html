@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Ring Pie Chart</title>
+    <style nonce>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .ring-chart {
+            position: relative;
+            /* Outer diameter of the ring */
+            width: 100px;  /* Decreased size */
+            height: 100px; /* Decreased size */
+            margin: 20px auto;
+            background: conic-gradient(#ff6347 0, #ff6347 50%, #87cefa 50%);
+            border-radius: 50%;
+            transition: background 1s ease;
+        }
+        .ring-chart::before {
+            content: '';
+            position: absolute;
+            /* Width of the ring: the larger the offset, the narrower the ring */
+            top: 20px;   /* Increased offset to make ring narrower */
+            left: 20px;  /* Increased offset to make ring narrower */
+            width: 60px; /* Inner diameter */
+            height: 60px; /* Inner diameter */
+            background: #f0f0f0;
+            border-radius: 50%;
+        }
+        .percentage {
+            font-size: 20px; /* Adjusted font size for smaller ring */
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        .controls input[type="number"] {
+            width: 50px;
+            font-size: 16px;
+            padding: 5px;
+            margin: 0 10px;
+        }
+        .color-picker {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="chart" class="ring-chart">
+            <div class="percentage" id="percentage">50%</div>
+        </div>
+        <div class="controls">
+            <label>Percentage:</label>
+            <input type="number" id="inputPercentage" min="0" max="100" value="50">
+            <br>
+            <label>Color 1:</label>
+            <input type="color" id="color1" class="color-picker" value="#ff6347">
+            <label>Color 2:</label>
+            <input type="color" id="color2" class="color-picker" value="#87cefa">
+        </div>
+    </div>
+
+    <script nonce>
+        const chart = document.getElementById('chart');
+        const percentageText = document.getElementById('percentage');
+        const inputPercentage = document.getElementById('inputPercentage');
+        const color1Input = document.getElementById('color1');
+        const color2Input = document.getElementById('color2');
+
+        function updateChart() {
+            const percent = inputPercentage.value;
+            const color1 = color1Input.value;
+            const color2 = color2Input.value;
+
+            chart.style.background = `conic-gradient(${color1} 0 ${percent}%, ${color2} ${percent}% 100%)`;
+            percentageText.textContent = `${percent}%`;
+        }
+
+        // Event listeners for updates
+        inputPercentage.addEventListener('input', updateChart);
+        color1Input.addEventListener('input', updateChart);
+        color2Input.addEventListener('input', updateChart);
+    </script>
+</body>
+</html>

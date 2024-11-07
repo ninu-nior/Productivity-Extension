@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Analysis</title>
+    <style nonce>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        .chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+        }
+        .ring-chart {
+            position: relative;
+            width: 70%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            transition: background 1s ease;
+        }
+        .ring-chart::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 70%;
+            height: 70%;
+            background: #f0f0f0;
+            border-radius: 50%;
+        }
+        .percentage {
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .chart-label {
+            font-size: 1rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .message {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container" id="chart-container"></div>
+    <div class="message" id="message"></div>
+
+    <script nonce>
+        // Sample data to simulate what might be passed from the extension background or popup script
+        const data = {
+            focus_point_1_percentage: 65,
+            focus_point_2_percentage: 80,
+            focus_point_3_percentage: 50,
+            message: "Focus points are being analyzed."
+        };
+
+        // Focus point details for chart rendering
+        const focusPoints = [
+            { name: 'Focus Point 1', percentage: data.focus_point_1_percentage, completedColor: '#FF0000', remainingColor: '#FFCCCC' },
+            { name: 'Focus Point 2', percentage: data.focus_point_2_percentage, completedColor: '#0000FF', remainingColor: '#ADD8E6' },
+            { name: 'Focus Point 3', percentage: data.focus_point_3_percentage, completedColor: '#B0E0E6', remainingColor: '#E0FFFF' }
+        ];
+
+        // Render the charts dynamically
+        const chartContainer = document.getElementById('chart-container');
+        focusPoints.forEach((fp, index) => {
+            const chartHtml = `
+                <div class="chart">
+                    <div class="ring-chart" id="ring-chart-${index}">
+                        <div class="percentage">${fp.percentage}%</div>
+                    </div>
+                    <div class="chart-label">${fp.name}</div>
+                </div>
+            `;
+            chartContainer.innerHTML += chartHtml;
+
+            // Apply the conic-gradient for each ring chart
+            const ringChart = document.getElementById('ring-chart-' + index);
+            ringChart.style.background = `conic-gradient(${fp.completedColor} 0 ${fp.percentage}%, ${fp.remainingColor} ${fp.percentage}% 100%)`;
+        });
+
+        // Display the message
+        const messageElement = document.getElementById('message');
+        messageElement.textContent = data.message;
+    </script>
+</body>
+</html>
