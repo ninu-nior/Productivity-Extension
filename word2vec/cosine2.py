@@ -43,7 +43,7 @@ content = ''' Java is a high-level, class-based, object-oriented programming lan
 Java gained popularity shortly after its release, and has been a very popular programming language since then.[18] Java was the third most popular programming language in 2022 according to GitHub.[19] Although still widely popular, there has been a gradual decline in use of Java in recent years with other languages using JVM gaining popularity.[20]
 
 Java was originally developed by James Gosling at Sun Microsystems. It was released in May 1995 as a core component of Sun's Java platform. The original and reference implementation Java compilers, virtual machines, and class libraries were originally released by Sun under proprietary licenses. As of May 2007, in compliance with the specifications of the Java Community Process, Sun had relicensed most of its Java technologies under the GPL-2.0-only license. Oracle offers its own HotSpot Java Virtual Machine, however the official reference implementation is the OpenJDK JVM which is free open-source software and used by most developers and is the default JVM for almost all Linux distributions.  '''
-focus_points = ["Java", "Programming", "Pasta"]
+focus_points = ["Java", "Programming", "Jupiter"]
 
 relevancy = calculate_relevancy(content, focus_points)
 print(relevancy)

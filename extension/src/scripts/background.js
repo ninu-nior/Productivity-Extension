@@ -3,9 +3,9 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     // Retrieve stored focus points
     chrome.storage.local.get(['focus_topic_1', 'focus_point_2', 'focus_point_3'], (data) => {
       const focusPoints = [
-        { name: 'Focus Point 1', value: data.focus_topic_1 },
-        { name: 'Focus Point 2', value: data.focus_point_2 },
-        { name: 'Focus Point 3', value: data.focus_point_3 }
+        { name: data.focus_topic_1 || 'Focus Point 1', value: data.focus_topic_1 },
+        { name: data.focus_point_2 || 'Focus Point 2', value: data.focus_point_2 },
+        { name: data.focus_point_3 || 'Focus Point 3', value: data.focus_point_3 }
       ];
       console.log("Retrieved focus points:", focusPoints);
 
@@ -87,9 +87,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                         border-radius: 50%;
                     }
                     .percentage {
-                    font-family: 'Poppins';
+                        font-family: 'Poppins';
                         font-size: 1.1rem;
-                        
                         position: absolute;
                         top: 50%;
                         left: 50%;
@@ -99,48 +98,44 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                         font-size: 0.8rem;
                         margin-top: 20px;
                         font-weight: bold;
-                        
                     }
                     .message {
-                    font-family: 'Poppins'
+                        font-family: 'Poppins';
                         font-size: 0.9rem;
                         color: #666;
                         margin-top: 1px;
                     }
-                        .space{
-                        height: 6%
-                        }
-                        .space2{
-                        height: 1%
-                        }
-                        .todo-item {
-  display: flex;
-  align-items: center; /* Center align items vertically */
-  margin-bottom: 10px; /* Space below each todo item */
-}
-
-/* To-Do Icon Styling - Diamond Shape */
-.todo-icon {
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent; /* Half the size of the diamond */
-  border-right: 12px solid transparent; /* Half the size of the diamond */
-  border-bottom: 20px solid rgb(229, 177, 74); /* Gold outline */
-  position: relative;
-  margin-right: 10px; /* Space between icon and input */
-}
-
-.todo-icon::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent; /* Half the size of the diamond */
-  border-right: 12px solid transparent; /* Half the size of the diamond */
-  border-top: 20px solid white; /* White inside */
-  position: absolute;
-  top: 100%; /* Position it below the top triangle */
-  left: -12px; /* Center it */
-}
+                    .space {
+                        height: 6%;
+                    }
+                    .space2 {
+                        height: 1%;
+                    }
+                    .todo-item {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+                    }
+                    .todo-icon {
+                        width: 0;
+                        height: 0;
+                        border-left: 12px solid transparent;
+                        border-right: 12px solid transparent;
+                        border-bottom: 20px solid rgb(229, 177, 74);
+                        position: relative;
+                        margin-right: 10px;
+                    }
+                    .todo-icon::after {
+                        content: "";
+                        width: 0;
+                        height: 0;
+                        border-left: 12px solid transparent;
+                        border-right: 12px solid transparent;
+                        border-top: 20px solid white;
+                        position: absolute;
+                        top: 100%;
+                        left: -12px;
+                    }
                 </style>
             </head>
             <body>
@@ -162,8 +157,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                 <script nonce>
                     const focusData = ${JSON.stringify([
                         { percentage: data.focus_point_1_percentage, completedColor: '#e05b5b', remainingColor: '#0d1b2a' },
-                        { percentage: data.focus_point_2_percentage, completedColor: '#0096c7', remainingColor: '#0d1b2a'  },
-                        { percentage: data.focus_point_3_percentage, completedColor: '#E5B14A', remainingColor:  '#0d1b2a' }
+                        { percentage: data.focus_point_2_percentage, completedColor: '#0096c7', remainingColor: '#0d1b2a' },
+                        { percentage: data.focus_point_3_percentage, completedColor: '#E5B14A', remainingColor: '#0d1b2a' }
                     ])};
 
                     focusData.forEach((fd, index) => {
@@ -185,7 +180,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             // Automatically close the popup after 20 seconds
             setTimeout(() => {
               chrome.windows.remove(window.id);
-            }, 20000); // 20000 milliseconds = 20 seconds
+            }, 10000); // 20000 milliseconds = 20 seconds
           });
         })
         .catch(error => console.error('Fetch Error:', error));
